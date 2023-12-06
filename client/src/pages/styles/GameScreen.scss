@@ -1,0 +1,34 @@
+/* GameScreen.scss */
+.game-board {
+  display: grid;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.board-row {
+  display: flex;
+}
+
+.grid-cell {
+  flex: 1;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+.game-info {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* Adjust other styles as needed */

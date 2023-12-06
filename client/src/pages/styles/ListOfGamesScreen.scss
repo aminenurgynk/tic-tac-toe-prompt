@@ -1,0 +1,70 @@
+// ListOfGamesScreen.scss
+
+// Genel stiller
+$primary-color: #1890ff;
+$secondary-color: #f5222d;
+$card-background: #fff;
+$card-border: #ccc;
+
+// Sayfa stil
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+// Başlık
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+// Oyuncu kartları
+.game-cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.game-card {
+  border: 1px solid $card-border;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  width: 150px;
+  background-color: $card-background;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: lighten($card-background, 5%);
+  }
+
+  div {
+    margin-bottom: 8px;
+  }
+
+  &.winner {
+    color: green;
+  }
+
+  &.loser {
+    color: red;
+  }
+}
+
+// Ana butonlar
+.primary-button {
+  margin-top: 20px;
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
