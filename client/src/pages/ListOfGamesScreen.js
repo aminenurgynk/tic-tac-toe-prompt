@@ -1,11 +1,19 @@
 // ListOfGamesScreen.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/ListOfGamesScreen.scss';
 import '../components/styles/Button.scss';
 
 const ListOfGamesScreen = ({ backgroundColor }) => {
     const navigate = useNavigate();
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        // Local storage'dan oyun bilgilerini al
+        const storedGames = localStorage.getItem('gameList');
+        const gameList = storedGames ? JSON.parse(storedGames) : [];
+        setGames(gameList);
+    }, []);
 
     const handleBackClick = () => {
         navigate('/');
@@ -15,23 +23,14 @@ const ListOfGamesScreen = ({ backgroundColor }) => {
         navigate('/game');
     };
 
-    const players = [
-        { name: 'Vudi', result: 'Winner' },
-        { name: 'Gargamel', result: 'Looser' },
-        { name: 'Dilara', result: 'Winner' },
-        { name: 'Feyza', result: 'Winner' },
-        { name: 'Ece', result: 'Winner' },
-    ];
-
-    const PRIMARY_BUTTON_CLASS = 'primary-button';
-
-    const renderPlayerCard = (player, index) => {
-        const { name, result } = player;
+    const renderGameCard = (game) => {
+        const { id, name, boardSize } = game;
 
         return (
-            <div key={index} className="game-card">
+            <div key={id} className="game-card">
                 <div>{name}</div>
-                <div className={result.toLowerCase()}>{result}</div>
+                <div>{boardSize}</div>
+                {/* Diğer oyun bilgileri buraya eklenebilir */}
             </div>
         );
     };
@@ -40,7 +39,7 @@ const ListOfGamesScreen = ({ backgroundColor }) => {
         <div style={{ backgroundColor: backgroundColor }}>
             <h1>List of Games</h1>
             <div className="game-cards">
-                {players.map((player, index) => renderPlayerCard(player, index))}
+                {games.map((game) => renderGameCard(game))}
             </div>
             <button className="secondary-button" onClick={handleBackClick}>
                 Back

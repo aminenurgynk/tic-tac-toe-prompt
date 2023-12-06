@@ -1,9 +1,10 @@
 /* GameScreen.scss */
 .game-board {
   display: grid;
-  gap: 16px;
+  gap: 0px;
   max-width: 400px;
   margin: 0 auto;
+  justify-items: center;
 }
 
 .board-row {

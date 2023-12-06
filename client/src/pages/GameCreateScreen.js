@@ -27,6 +27,13 @@ const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
         // Oyun listesini localStorage'a kaydet
         localStorage.setItem('gameList', JSON.stringify(gameList));
 
+        // Yeni oyun oluşturulduktan sonra, bu oyunun bilgilerini local storage'dan çek ve userId'yi belirle
+        const userGameIndex = newGame.id - 1;
+        setGameName(gameList[userGameIndex].name);
+
+        // Yeni oyun oluşturulduktan sonra, bu oyunun id'sini local storage'da kaydet
+        localStorage.setItem('currentGameId', newGame.id);
+
         // Oyun oluşturulduktan sonra ListOfGamesScreen'e yönlendir
         navigate('/list_of_games');
     };
