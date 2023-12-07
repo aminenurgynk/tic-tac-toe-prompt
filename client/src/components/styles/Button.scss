@@ -1,12 +1,12 @@
 // /components/styles/Button.scss
 
-// Genel stiller
+// General styles
 $primary-color: #3d8b40;
 $button-border-radius: 5px;
 
-// Normal durum
+// Normal state
 .button {
-  background-color: $primary-color;
+  background-color: #953e3e;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -19,15 +19,15 @@ $button-border-radius: 5px;
   }
 }
 
-// Devam eden işlem durumu (örneğin, bir form gönderme durumu)
+// Ongoing process state (e.g., submitting a form state)
 .button.loading {
   background-color: lighten($primary-color, 10%);
   cursor: not-allowed;
 }
 
-// İkincil buton (örneğin, geri düğmesi)
+// Secondary button (e.g., back button)
 .secondary-button {
-  background-color: #f5222d;
+  background-color: #f52;
   color: #fff;
   border: none;
   padding: 10px 20px;

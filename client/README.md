@@ -1,75 +1,52 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Tic Tac Toe Game with OpenAI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project includes a "Tic Tac Toe" game played with an artificial intelligence model developed by OpenAI. The game provides an interactive experience to the user and consists of three different screens.
 
-## Available Scripts
+![Oyun Ekranı](../images/game_screen.png)
 
-In the project directory, you can run:
+## Screens
 
-### `npm start`
+### 1.  Entry Screen
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In this screen, the user can enter their name and choose the background color of the game board.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Game List Screen
 
-### `npm test`
+This screen lists the past games on your computer. Each game is defined with a name and color options.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Oyun Listesi Ekranı](../images/game_list_screen.png)
 
-### `npm run build`
+### 3. Game Screen
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This screen is where the actual game takes place. The user makes "X" moves, and OpenAI makes "O" moves. If the game ends in a draw, the game board is automatically reset. When won or lost, the user can start a new game by clicking the restart button.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Oyun Ekranı](../images/game_screen.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Game Flow
 
-### `npm run eject`
+The game provides an interactive experience to the user, but in some cases, due to thread fatigue, the game's response may be slow.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## How to Use
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. First, specify your name on the entry screen and choose the background color of the game board.
+2. Check the past games on your computer on the game list screen.
+3. Make "X" moves on the game screen and wait for OpenAI's "O" moves.
+4. If the game ends in a draw, it automatically restarts. When won or lost, click the restart button to start a new game.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Notes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The game may experience delays in response time due to thread fatigue.
+- Before running the project, go to the terminal or command prompt in the project folder and use the npm install command to install the necessary packages.
 
-## Learn More
+## Technologies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- The client side is written in React.js.
+- Node.js and Express are used on the server side.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Thanks
 
-### Code Splitting
+This game is developed using OpenAI's artificial intelligence models. Thanks, OpenAI!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Video
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# tic-tac-toe-prompt
-Using prompt engineering , `Tic Tac Toe` game with React.js
->>>>>>> d364a5c36b596953945b81a3cefdfd9426402c3e
+Game video: [İzle](https://drive.google.com/drive/folders/1LyM10LWxwyzqxZRuQdxKQd1Ndba1M8Ha?usp=sharing)

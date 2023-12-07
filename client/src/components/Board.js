@@ -1,10 +1,14 @@
 // components/Board.js
-import React from 'react';
-import './Board.scss'; // SCSS dosyanızın yolu
+import React from "react";
+import "./Board.scss";
 
 const Board = ({ squares, onClick }) => {
   const renderSquare = (index) => (
-    <div className="grid-cell" onClick={() => onClick(index)}>
+    <div
+      className="grid-cell"
+      onClick={() => onClick(index)}
+      style={{ backgroundColor: "red" }}
+    >
       {squares[index]}
     </div>
   );

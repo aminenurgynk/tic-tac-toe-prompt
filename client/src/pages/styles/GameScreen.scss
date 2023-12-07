@@ -26,9 +26,8 @@ $link-color: #2196f3; // Soft Blue
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    background-color: $primary-color;
     color: #fff;
-    border: 2px solid darken($primary-color, 10%);
+    border: 2px solid darken(black, 10%);
     cursor: pointer;
     transition: background-color 0.3s ease, border 0.3s ease;
 
@@ -79,12 +78,12 @@ $link-color: #2196f3; // Soft Blue
 
 h1 {
   text-align: center;
-  color: $primary-color;
+  color: black;
   margin-bottom: 20px;
 }
 
 p {
   text-align: center;
   font-size: 18px;
-  color: $primary-color;
+  color: black;
 }
