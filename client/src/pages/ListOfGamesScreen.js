@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/ListOfGamesScreen.scss';
-import '../components/styles/Button.scss';
 
 const ListOfGamesScreen = ({ backgroundColor }) => {
     const navigate = useNavigate();
@@ -31,6 +30,7 @@ const ListOfGamesScreen = ({ backgroundColor }) => {
                 <div>{name}</div>
                 <div>{boardSize}</div>
                 {/* Diğer oyun bilgileri buraya eklenebilir */}
+                <button className="button">Play</button>
             </div>
         );
     };
@@ -52,3 +52,5 @@ const ListOfGamesScreen = ({ backgroundColor }) => {
 };
 
 export default ListOfGamesScreen;
+
+

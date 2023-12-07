@@ -1,84 +1,84 @@
-import * as dotenv from "dotenv";
-import { OpenAI } from "openai";
-// import http from "http";
+import express from 'express';
+import OpenAI from 'openai';
+import cors from 'cors';
 
-// const port = 3030;
+const app = express();
+const port = 3031;
 
-dotenv.config();
+app.use(cors());
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+let openai = null;
+let threadId = null;
+let runID = null;
+
+const createOpenAI = () => {
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: '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',
+    });
+  }
+};
+
+const createThread = async () => {
+  if (!threadId) {
+    const thread = await openai.beta.threads.create();
+    threadId = thread.id;
+    //console.log(threadId);
+  }
+};
+
+const waitForCompletion = async (thread_id, run_id) => {
+  let run = await openai.beta.threads.runs.retrieve(thread_id, run_id);
+  while (run.status !== 'completed') {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    //console.log('Waiting for completion...');
+    run = await openai.beta.threads.runs.retrieve(thread_id, run_id);
+    //console.log(run);
+  }
+  return run;
+};
+
+app.use(express.json());
+
+app.post('/', async (req, res) => {
+  const getData = async (req, res) => {
+    //console.log(req.body.board);
+    createOpenAI();
+    await createThread();
+    console.log(`Requests..........`)
+    console.log(req.body.board)
+
+    const message = await openai.beta.threads.messages.create(threadId, {
+      role: 'user',
+      content: `${req.body.board}`,
+    });
+
+    const run = await openai.beta.threads.runs.create(threadId, {
+      assistant_id: 'asst_5aMfjGbdMXC6xPRgGsVce0RJ',
+      instructions: "You are a Tic Tac Toe assistant. You are the most professional Tic Tac Toe player in the world. You have a perfect strategy. Let's play Tic Tac Toe on a 3x3 board. We will play the game in array format ['', '', '', '', '', '', '', '', '']. Write your move in the array I send you, and when you are ready, send it back. Let's start. Provide your answers only as an array (I know you are a text-based artificial intelligence, so let's play this game text-based) and never send me any data expect your answer!",
+    });
+
+    
+
+    //console.log(run);
+    runID = run.id;
+    await waitForCompletion(threadId, runID);
+
+    const messages = await openai.beta.threads.messages.list(threadId);
+    messages.body.data.forEach((message) => {
+      console.log('--------------------------------------------');
+      console.log(message.content[0].text.value);
+      console.log('--------------------------------------------');
+    });
+    const lastMessage =
+      messages.body.data[0].content[0].text.value || 'No messages';
+
+    res.status(200).json({ lastMessage });
+  };
+
+  getData(req, res);
 });
 
-// //Create new assistant
-// const assistant =   await openai.beta.assistants.create({
-//     name : "TicTacTech2",
-//     instructions: "Let's play tic tac toe with you on a 3x3 board, we will play the game in array format (['','','','','','','','','']), write your move in the array I send you and send it back if you are ready, let's start give your answers only as an array  (I know you are a text-based AI, let's play this game text-based)",
-//     tools: [
-//         {
-//         type: "code_interpreter",
-//     },
-// ],
-// model: "gpt-4-1106-preview",
-// });
-// console.log(assistant.id) //asst_7CjZQSSw3KgmpoPgU2daRcf4
-
-const assistant = await openai.beta.assistants.retrieve(
-    "asst_7CjZQSSw3KgmpoPgU2daRcf4"             // "asst_5aMfjGbdMXC6xPRgGsVce0RJ"
-);
-
-// //Threads
-const thread = await openai.beta.threads.create();
-// console.log(thread); // thread_u4JLZBBmQvVdk92P4ZrOOWQI
-
-// //Create Message
-const message = await openai.beta.threads.messages.create(thread.id, {
-  role: "user",
-  content: "['','X','','','','','','','']",
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
-//console.log(message);
-
-//Run assistant
-const run = await openai.beta.threads.runs.create(thread.id, {
-  assistant_id: assistant.id,
-  instructions: "Address the user as Vudi",
-});
-
-// const run = await openai.beta.threads.runs.retrieve(
-//     "thread_u4JLZBBmQvVdk92P4ZrOOWQI",
-//     "run_roKKJ1o7o3p25hJZEmdzDSoY",
-// );
-
-// console.log(run);
-
-const messages = await openai.beta.threads.messages.list(
-  "thread_u4JLZBBmQvVdk92P4ZrOOWQI"
-);
-messages.body.data.forEach((message) => {
-  console.log(message.content);
-});
-
-const logs = await openai.beta.threads.runs.steps.list();
-
-
-// ----------------------------------------------------------------
-// const server = http.createServer(function (req, res) {
-//   // Write a response to the client
-//   res.write("Hello World");
-
-//   // End the response
-//   res.end();
-// });
-
-// // Set up our server so it will listen on the port
-// server.listen(port, function (error) {
-//   // Checking any error occur while listening on port
-//   if (error) {
-//     console.log("Something went wrong", error);
-//   }
-//   // Else sent message of listening
-//   else {
-//     console.log("Server is listening on port" + port);
-//   }
-// });
-

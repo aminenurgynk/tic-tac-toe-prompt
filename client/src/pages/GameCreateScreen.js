@@ -1,13 +1,15 @@
 // GameCreateScreen.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types'; // Eklediğimiz yeni import
 import '../components/styles/Button.scss';
 import './styles/GameCreateScreen.scss';
 
-const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
+const GameCreateScreen = ({ onBoardColorChange }) => {
     const navigate = useNavigate();
     const [gameName, setGameName] = useState(localStorage.getItem('gameUserName') || '');
     const [boardSize, setBoardSize] = useState(localStorage.getItem('boardSize') || '3x3');
+    const [boardBackgroundColor, setBoardBackgroundColor] = useState(localStorage.getItem('boardBackgroundColor') || '#ffffff');
 
     const handleCreateGame = () => {
         // Oyun listesini localStorage'dan al
@@ -18,6 +20,7 @@ const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
             id: gameList.length + 1,
             name: gameName,
             boardSize: boardSize,
+            boardBackgroundColor: boardBackgroundColor,
             // Diğer oyun bilgileri buraya eklenebilir
         };
 
@@ -36,10 +39,15 @@ const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
 
         // Oyun oluşturulduktan sonra ListOfGamesScreen'e yönlendir
         navigate('/list_of_games');
+
+        // onBoardColorChange prop'unu kontrol et ve çağır
+        if (onBoardColorChange && typeof onBoardColorChange === 'function') {
+            onBoardColorChange(boardBackgroundColor);
+        }
     };
 
-    const handleColorChange = (event) => {
-        onColorChange(event.target.value);
+    const handleBoardBackgroundColorChange = (event) => {
+        setBoardBackgroundColor(event.target.value);
     };
 
     const handleBoardSizeChange = (event) => {
@@ -47,8 +55,8 @@ const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
     };
 
     return (
-        <div className="game-create-container" style={{ backgroundColor: backgroundColor, height: '100vh' }}>
-            <h1>Create a New Game</h1>
+        <div className="game-create-container" style={{ height: '100vh' }}>
+            <h1>Tic Tac Toe</h1>
             <div className="input-group">
                 <label htmlFor="gameName">Name:</label>
                 <input
@@ -59,8 +67,8 @@ const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
                 />
             </div>
             <div className="input-group">
-                <label htmlFor="backgroundColor">Background Color:</label>
-                <select id="backgroundColor" onChange={handleColorChange} value={backgroundColor}>
+                <label htmlFor="boardBackgroundColor">Board Background Color:</label>
+                <select id="boardBackgroundColor" onChange={handleBoardBackgroundColorChange} value={boardBackgroundColor}>
                     <option value="#ffffff">White</option>
                     <option value="#901010">Red</option>
                     <option value="#003153">Blue</option>
@@ -70,20 +78,15 @@ const GameCreateScreen = ({ backgroundColor, onColorChange }) => {
                     {/* You can add more color options */}
                 </select>
             </div>
-            <div className="input-group">
-                <label htmlFor="boardSize">Board Size:</label>
-                <select id="boardSize" onChange={handleBoardSizeChange} value={boardSize}>
-                    <option value="3x3">3x3</option>
-                    <option value="4x4">4x4</option>
-                    <option value="5x5">5x5</option>
-                    <option value="6x6">6x6</option>
-                </select>
-            </div>
             <button type="button" className="button btn-create-game" onClick={handleCreateGame}>
                 Create Game
             </button>
         </div>
     );
+};
+
+GameCreateScreen.propTypes = {
+    onBoardColorChange: PropTypes.func,
 };
 
 export default GameCreateScreen;
