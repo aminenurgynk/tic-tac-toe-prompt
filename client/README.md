@@ -2,7 +2,7 @@
 
 This project includes a "Tic Tac Toe" game played with an artificial intelligence model developed by OpenAI. The game provides an interactive experience to the user and consists of three different screens.
 
-![Oyun Ekranı](./images/game_screen.png)
+![Oyun Ekranı](./public/images/game_screen.png)
 
 ## Screens
 
