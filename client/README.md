@@ -14,13 +14,13 @@ In this screen, the user can enter their name and choose the background color of
 
 This screen lists the past games on your computer. Each game is defined with a name and color options.
 
-![Oyun Listesi Ekranı](../images/game_list_screen.png)
+![Oyun Listesi Ekranı](./public/images/game_list_screen.png)
 
 ### 3. Game Screen
 
 This screen is where the actual game takes place. The user makes "X" moves, and OpenAI makes "O" moves. If the game ends in a draw, the game board is automatically reset. When won or lost, the user can start a new game by clicking the restart button.
 
-![Oyun Ekranı](../images/game_screen.png)
+![Oyun Ekranı](./public/images/game_screen.png)
 
 ## Game Flow
 
