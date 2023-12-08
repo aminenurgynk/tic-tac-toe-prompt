@@ -10,6 +10,8 @@ This project includes a "Tic Tac Toe" game played with an artificial intelligenc
 
 In this screen, the user can enter their name and choose the background color of the game board.
 
+![Oyun Ekranı](./public/images/game_create_screen.png)
+
 ### 2. Game List Screen
 
 This screen lists the past games on your computer. Each game is defined with a name and color options.
