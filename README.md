@@ -60,7 +60,7 @@ The game provides an interactive experience to the user, but in some cases, due 
 ## Notes
 
 - The game may experience delays in response time due to thread fatigue.
-- Before running the project, go to the terminal or command prompt in the project folder and use the npm install command to install the necessary packages.
+- Before running the project, go to the terminal or command prompt in the project folder and use the ` npm install `  command to install the necessary packages.
 
 ## Technologies
 
