@@ -61,6 +61,7 @@ The game provides an interactive experience to the user, but in some cases, due 
 
 - The game may experience delays in response time due to thread fatigue.
 - Before running the project, go to the terminal or command prompt in the project folder and use the npm install command to install the necessary packages.
+- In the server part, write your OPENAI_API_KEY and ASSISTANT_ID in the .env file, then write your assistant's instructions in the location specified in api.js on line 55. This way, the project will be functional. If any other issues arise, please email at 'amine.gynk@gmail.com'.
 
 ## Technologies
 
