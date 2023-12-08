@@ -49,7 +49,6 @@ const GameScreen = () => {
 
   useEffect(() => {
     const winner = calculateWinner(board, boardSize);
-    console.log(board);
     if (!winner && board.every((e) => e !== null && e !== "")) {
       // If the game ended in a draw
       alert("The game is a draw!");
@@ -85,8 +84,6 @@ const GameScreen = () => {
 
   const sendBoardToBackend = async (currentBoard) => {
     try {
-      console.log(`Request................`);
-      console.log(currentBoard);
       const response = await fetch("http://localhost:3031/", {
         method: "POST",
         headers: {
@@ -101,7 +98,6 @@ const GameScreen = () => {
         throw new Error("Failed to send board to backend.");
       }
 
-      console.log("Board sent to backend successfully.");
       const data = await response.json();
       let payload = data.lastMessage.replace(/'/g, '"');
       payload = payload.substring(
@@ -109,8 +105,6 @@ const GameScreen = () => {
         payload.lastIndexOf("]") + 1
       );
       // Update the game board with the assistant's move
-      console.log(data.lastMessage);
-      console.log(payload);
       setBoard(JSON.parse(payload));
       setIsUserTurn(true);
     } catch (error) {
