@@ -72,6 +72,4 @@ The game provides an interactive experience to the user, but in some cases, due 
 
 This game is developed using OpenAI's artificial intelligence models. Thanks, OpenAI!
 
-## Video
 
-Game video: [İzle](https://drive.google.com/drive/folders/1LyM10LWxwyzqxZRuQdxKQd1Ndba1M8Ha?usp=sharing)
